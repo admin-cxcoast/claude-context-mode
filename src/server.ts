@@ -19,7 +19,7 @@ import {
   hasBunRuntime,
 } from "./runtime.js";
 
-const VERSION = "0.9.21";
+const VERSION = "0.9.22";
 const runtimes = detectRuntimes();
 const available = getAvailableLanguages(runtimes);
 const server = new McpServer({
