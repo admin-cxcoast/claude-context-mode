@@ -26,6 +26,7 @@ https://github.com/user-attachments/assets/07013dbf-07c0-4ef1-974a-33ea1207637b
 | SessionStart Hook | Yes | Yes | Yes | -- | -- |
 | Can Modify Args | Yes | Yes | Yes | Plugin | -- |
 | Can Block Tools | Yes | Yes | Yes | Plugin | -- |
+| Utility Commands (ctx) | Yes | Yes | Yes | Yes | Yes |
 | Slash Commands | Yes | -- | -- | -- | -- |
 | Plugin Marketplace | Yes | -- | -- | -- | -- |
 
@@ -76,7 +77,7 @@ That's it. The plugin installs everything automatically:
 | `/context-mode:ctx-doctor` | Diagnostics — runtimes, hooks, FTS5, plugin registration, versions. |
 | `/context-mode:ctx-upgrade` | Pull latest, rebuild, migrate cache, fix hooks. |
 
-> **Note:** Slash commands are a Claude Code plugin feature. On other platforms, use the `stats` MCP tool directly — it works on all platforms. Ask the model: *"Show my context-mode stats"* or *"Call the stats tool"*.
+> **Note:** Slash commands are a Claude Code plugin feature. On other platforms, all three utility commands (`ctx stats`, `ctx doctor`, `ctx upgrade`) work as MCP tools — just type the command name and the model will invoke it. See [Utility Commands](#utility-commands).
 
 **Alternative — MCP-only install** (no hooks or slash commands):
 
@@ -384,7 +385,7 @@ Detailed event data is also indexed into FTS5 for on-demand retrieval via `searc
 
 </details>
 
-### Utility Commands
+## Utility Commands
 
 Three built-in commands work across **all platforms** — no Skills required:
 
