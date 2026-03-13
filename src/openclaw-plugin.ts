@@ -127,7 +127,7 @@ export default async function register(api: OpenClawPluginApi): Promise<void> {
     // best effort — never break plugin init
   }
 
-  // Clean up old sessions on startup
+  // Clean up old sessions on startup (0 = immediate cleanup, no retention)
   db.cleanupOldSessions(0);
 
   // Load routing instructions for prompt injection
@@ -173,7 +173,8 @@ export default async function register(api: OpenClawPluginApi): Promise<void> {
       }
 
       if (decision.action === "modify" && decision.updatedInput) {
-        // Mutate params in place — OpenClaw reads the mutated input
+        // In-place mutation is required by OpenClaw's hook paradigm —
+        // the gateway reads the mutated params object after the hook returns.
         Object.assign(toolInput, decision.updatedInput);
       }
 
