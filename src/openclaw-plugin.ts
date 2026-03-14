@@ -41,7 +41,7 @@ import type { HookInput } from "./session/extract.js";
 import { buildResumeSnapshot } from "./session/snapshot.js";
 import type { SessionEvent } from "./types.js";
 import { OpenClawAdapter } from "./adapters/openclaw/index.js";
-import { WorkspaceRouter, extractWorkspace } from "./openclaw/workspace-router.js";
+import { WorkspaceRouter } from "./openclaw/workspace-router.js";
 
 // ── OpenClaw Plugin API Types ─────────────────────────────
 
@@ -179,11 +179,11 @@ function getDBPath(projectDir: string): string {
 
 // ── Plugin Definition (object export) ─────────────────────
 
-// Guard against double-registration (OpenClaw may call register() more than once per process)
 /**
  * OpenClaw plugin definition. The object form provides declarative metadata
  * (id, name, configSchema) that OpenClaw can read without executing code.
- * The register() method is called once when the plugin is loaded.
+ * register() is called once per agent session with a fresh api object.
+ * Each call creates isolated closures (db, sessionId, hooks) — no shared state.
  */
 export default {
   id: "context-mode",
